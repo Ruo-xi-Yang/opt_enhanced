@@ -37,7 +37,7 @@ import trialfile
 # OPTIMISATION PARAMETERS -----------------------------------------------------
 
 output_opt_file = "progress.txt"
-parent_dir = '/share/data/ruoxi/FYP/Optimization_1/optimization_trial'
+parent_dir = '/share/data/ruoxi/FYP/Optimization_1/enhanced/opt_enhanced'
 optimisation = "2D"                  #"2D", "3D"
 
 DVs = 2                              # number of Design Variables
