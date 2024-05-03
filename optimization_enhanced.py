@@ -246,10 +246,9 @@ class MyProblem(Problem):
                 finished = np.full((len(X), 1), False, dtype=bool)
                 while1broken = False
                 while2broken = False
-                timebreak1 = time.time() + p_timeout1
-                timebreak2 = time.time() + p_timeout2
-                self.while_loop_check(finished,p_waitingtime1,running,p_waitingtime2,sorted_population,timebreak1,timebreak2,p_timeout1,p_timeout2,tperturb,while1broken,while2broken)
-            i = 0
+                timebreak1 = time.time() + timeout1
+                timebreak2 = time.time() + timeout2
+                
             for row in sorted_population:
                 idv_path = get_idv_dir(i,row[0],row[1],ngen)
                 last_sol_file = "gen-%s-idv-%s_%s.00.pyfrs" %(ngen,i,tend)
