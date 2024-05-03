@@ -248,7 +248,7 @@ class MyProblem(Problem):
                 while2broken = False
                 timebreak1 = time.time() + timeout1
                 timebreak2 = time.time() + timeout2
-                
+            i = 0
             for row in sorted_population:
                 idv_path = get_idv_dir(i,row[0],row[1],ngen)
                 last_sol_file = "gen-%s-idv-%s_%s.00.pyfrs" %(ngen,i,tend)
