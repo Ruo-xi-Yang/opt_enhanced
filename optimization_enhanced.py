@@ -108,35 +108,7 @@ if optimisation == "2D":
     timeout2 = 200*waitingtime2      # exit the waiting loop for queueing cases
     dt_out = 5                       # dt for output solution
 
-# 3D OPTIMISATION -----------------
 
-if optimisation == "3D":
-    b = 0.6                          # span length
-    dt = 0.00006                     # time step
-    tstart = 0                       # simulation start time
-    tperturb = 5                     # sinusoidal perturbation time
-    avg_from = 90                    # extract averages from
-    tend = 150                       # total convective times
-    GPUs = 34                        # number of GPUs for parallelisation
-    wctime = '0-24:00:00'            # wall clock time for each individual to run
-    waitingtime1 = 2*3600            # time between checks if cases are finished
-    waitingtime2 = 3600              # time between checks if cases are running
-    timeout1 = 50*waitingtime1       # exit the waiting loop for running cases
-    timeout2 = 50*waitingtime2       # exit the waiting loop for queueing cases
-    run_p_sep = True                 # run perturbation in separated job
-    if run_p_sep:                       
-        wctimep = '0-1:00:00'           # wall clock time for perturbation of each idv
-        p_waitingtime1 = 3600           # time between checks if cases are finished
-        p_waitingtime2 = 3600           # time between checks if cases are running
-        p_timeout1 = 50*waitingtime1    # exit the waiting loop for running cases
-        p_timeout2 = 25*waitingtime2    # exit the waiting loop for queueing cases
-    if test == "Yes":
-        tperturb = 1; tend = 2; avg_from = 1
-        waitingtime1 = 60; waitingtime2 = 60
-        timeout1 = 3600; timeout2 = timeout1*2
-        wctime = '0-00:40:00'
-    if rep_test == "Yes":
-        timeout1 = 1; timeout2 = timeout1*2
 
 main_ini_file = "Re3000M015.ini"        # PyFR initial file name
 second_ini_file = "Re6000M03.ini"       # Second initial file with doubled v
@@ -265,7 +237,7 @@ class MyProblem(Problem):
                     self.print_state(running[i],finished[i],i)
                 
                 i = i+1
-            (running,finished,while1broken,while2broken,timebreak1,timebreak2) = self.reset_running(X)
+            # (running,finished,while1broken,while2broken,timebreak1,timebreak2) = self.reset_running(X)
             self.while_loop_check(finished,waitingtime1,running,waitingtime2,sorted_population,timebreak1,timebreak2,timeout1,timeout2,tend,while1broken,while2broken)
            
         if not (ngen == evaluated_gen and initialseeding == "evalPOP"):
@@ -385,7 +357,7 @@ class MyProblem(Problem):
                 i = 0
                 for row in sorted_population:
                     idv_path = get_idv_dir(i,row[0],row[1],ngen)
-                    last_sol_file = "gen-%s-idv-%s_%s.00.pyfrs" %(ngen,i,10)
+                    last_sol_file = "gen-%s-idv-%s_%s.00.pyfrs" %(ngen,i,tfinish)
                     sol_path = os.path.join(idv_path, last_sol_file)
                     outputfile = self.check_for_files(idv_path)
                     if (running[i]==True and finished[i]==False): 
