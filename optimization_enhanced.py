@@ -385,7 +385,7 @@ class MyProblem(Problem):
                 i = 0
                 for row in sorted_population:
                     idv_path = get_idv_dir(i,row[0],row[1],ngen)
-                    last_sol_file = "gen-%s-idv-%s_%s.00.pyfrs" %(ngen,i,tfinish-5)
+                    last_sol_file = "gen-%s-idv-%s_%s.00.pyfrs" %(ngen,i,10)
                     sol_path = os.path.join(idv_path, last_sol_file)
                     outputfile = self.check_for_files(idv_path)
                     if (running[i]==True and finished[i]==False): 
