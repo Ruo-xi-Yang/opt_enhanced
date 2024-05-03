@@ -241,7 +241,7 @@ class MyProblem(Problem):
                      
             # RUNNING --------------------------------------------------
             if optimisation == "2D":
-                sleep_for(60)
+                sleep_for(10)
                 running = np.full((len(X), 1), False, dtype=bool)
                 finished = np.full((len(X), 1), False, dtype=bool)
                 while1broken = False
